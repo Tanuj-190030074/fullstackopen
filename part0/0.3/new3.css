@@ -1,0 +1,34 @@
+body{
+    font-style: italic;
+    background-image: url(0-9962_good-wallpapers-background-images-for-win-10.jpg);
+    background-size: cover;
+}
+.login{
+   margin-left: 37%;
+   background-color: black;
+   width:35%;
+   padding: 50px;
+}
+.haha label{
+    color:white;
+}
+.haha{
+    padding: 5px;
+}
+.haha input{
+    width: 100%;
+}
+.btnen input{
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    padding: 5px;
+    width: 100%;
+    margin-left: 5px;
+}
+.payment  label{
+    color: white;
+}
+.payment{
+    padding: 5px;
+}
