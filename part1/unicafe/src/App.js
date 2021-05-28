@@ -39,7 +39,7 @@ const Statistic = ({ name, value }) => (
 const Statistics = ({ good, neutral, bad }) => {
   let all= good+neutral+bad
   if (all>0) {
-    let x=(good*1+bad*-1)/all
+    let x=(good*1+bad*-1+neutral*0)/all
     let y=good/all*100
     return (
       <table>
