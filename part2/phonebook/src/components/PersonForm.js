@@ -21,15 +21,14 @@ const PersonForm=({persons,setPersons,setErrorMessage}) => {
       if(persons.find(x=>x.name===newName))
       {
         if(window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`))
-        {
-          const x=persons.find(x=>x.name===newName)
-          x.number=phone
-          personService.updateperson(x.id,x).then(()=>{
-            setPersons(persons.map(y=>y.id!==x.id?y:x))
-            setErrorMessage({text:`Updated ${x.name} successfully`,type:'error2'})
+        {  const x=persons.find(m=>m.name===newName)
+           const updatedone={...x,number:phone}
+          personService.updateperson(updatedone.id,updatedone).then(()=>{
+            setPersons(persons.map(y=>y.id!==updatedone.id?y:updatedone))
+            setErrorMessage({text:`Updated ${updatedone.name} successfully`,type:'error2'})
           }).catch(error=>{
             console.log(error)
-            setErrorMessage({text:`Information of ${x.name} has already been removed from server`,type:"error"})
+            setErrorMessage({text:`${error.response.data.error}`,type:"error"})
           })
           setTimeout(() => {
             setErrorMessage(null)
@@ -39,7 +38,6 @@ const PersonForm=({persons,setPersons,setErrorMessage}) => {
       else{
       const obj ={id:persons.length+1,name:newName, number:phone}
       personService.insert(obj).then(Response=>{
-        setPersons(persons.concat(Response))
         setErrorMessage({text:`Added '${Response.name}'`,type:'error2'})
       }).catch(error=>{
         setErrorMessage({text:`${error.response.data.error}`,type:'error'})
@@ -47,15 +45,16 @@ const PersonForm=({persons,setPersons,setErrorMessage}) => {
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
+      setPersons(persons.concat(Response))
       }
     }
     return (
       <>
       <form onSubmit={addperson}>
           <div>
-            name: <input  onChange={change} value={newName} required/>
+            name: <input  onChange={change} value={newName}/>
           </div>
-          <div>number: <input value={phone} onChange={changePhone} required/></div>
+          <div>number: <input value={phone} onChange={changePhone}/></div>
           <div >
             <button type="submit">add</button>
           </div>
