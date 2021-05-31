@@ -39,13 +39,13 @@ const PersonForm=({persons,setPersons,setErrorMessage}) => {
       const obj ={id:persons.length+1,name:newName, number:phone}
       personService.insert(obj).then(Response=>{
         setErrorMessage({text:`Added '${Response.name}'`,type:'error2'})
+        setPersons(persons.concat(Response))
       }).catch(error=>{
         setErrorMessage({text:`${error.response.data.error}`,type:'error'})
       })
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
-      setPersons(persons.concat(Response))
       }
     }
     return (
