@@ -69,6 +69,7 @@ blogsRouter.put('/:id',async(request,response)=>{
             user:user.id
         }
         const x=await blogmodel.findByIdAndUpdate(request.params.id,newobj,{new:true})
+        await x.populate('user', { username: 1, name: 1, id: 1 }).execPopulate()
         response.json(x)
      }
      else{
