@@ -10,7 +10,7 @@ const App = () => {
   const [ filter, setFilter ] = useState('')
 
   useEffect(() => {
-    axios.get("https://restcountries.eu/rest/v2/all").then((response) =>setCountries(response.data))
+    axios.get("https://restcountries.com/v2/all").then((response) =>setCountries(response.data))
   },[])
   
   

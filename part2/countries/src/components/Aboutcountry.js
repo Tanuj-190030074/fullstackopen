@@ -7,7 +7,7 @@ const Aboutcountry = ({ country }) => {
     const api_key = String(process.env.REACT_APP_API_KEY)
     console.log(api_key)
     const params = {
-      access_key: '4f44e81a65f56303d33f94fc570907b3',
+      access_key: '7577625d5a44d8fdef6210165cf0234a',
       query: country.capital
     }
     useEffect(()=>{
